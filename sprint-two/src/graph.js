@@ -3,62 +3,87 @@
 // Instantiate a new graph
 var Graph = function() {
   this.newGraph = {};
-
 };
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  // console.log(node);
-  // console.log(this.newGraph(node));
-  //var test = new newGraph;
-
-  // var test = new Node(node);
-  this.newGraph[node] = node;
-  console.log('test', this.newGraph);
-
+  this.newGraph[node] = [];
 };
-// var Node = function(value) {
-//   var node = {};
-
-//   node.value = value;
-//   node.next = null;
-
-//   return node;
-// };
-
-// Return a boolean value indicating if the value passed to contains is represented in the graph.
-
-//input - value
-//output - a boolean if the value passed
-//constraints - noone
-//edge cases - none
-
-//strategy - iterate through newGraph, check if value is equal to value, then return true;
 
 
 Graph.prototype.contains = function(node) {
-      for (const keys in this.newGraph) {
-
-        if (this.newGraph[keys] === node) {
-          return true;
-        }
-      }
+  for (let keys in this.newGraph) {
+    if (Number(keys) === node) {
+      return true;
+    }
+  }
+  return false;
 };
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-};
-
-// Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
-Graph.prototype.hasEdge = function(fromNode, toNode) {
+  for (let keys in this.newGraph) {
+    if (Number(keys) === node) {
+      delete this.newGraph[keys];
+    }
+  }
 };
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
+  console.log('hi');
+  // add node 1, 2, 3
+  // graph.hasEdge(3, 2).to.equal(true)
+  // 3: [2]
+
+  // iterate through the graph
+  // check if key === fromNode
+  // fromNode.push(toNode)
+  for (let keys in this.newGraph) {
+    if(Number(keys) === fromNode) {
+      this.newGraph[keys].push(toNode);
+    }
+  }
+ // console.log('graph: ', this.newGraph, 'fromNode: ', fromNode, 'toNode: ', toNode);
 };
+
+// Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
+//input - node, node
+//output - booolean if toNode value is contained in the key/value pair of fromNode
+
+//strategy
+//iterate through the nodes and iterating through values to see if toNode(value) exists in fromNode key: [];
+
+//pseudocode
+// for in loop iterating through this.newGraph
+  //if this.newGraph[key] ((ARRAY)), includes (toNode)
+    //return true
+//return false
+// ** fromNode: one we're adding to(key), toNode: the value we want to push (value)
+Graph.prototype.hasEdge = function(fromNode, toNode) {
+  if (this.newGraph[fromNode].includes(toNode)) {
+    return true;
+  }
+  return false;
+};
+
+// I - fromNode, toNode
+
+// strategy - check if fromNode (key) includes toNode (value) as an 'edge'
+
+//pseudocode -
+// check if this.newGraph[fromNode].includes(toNode)
+// this.newGraph[fromNode].splice(this.newGraph[fromNode].indexOf(toNode), 1) <-- WOW...CLEAN
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  console.log('hiasdfasd');
+  // console.log('graph: ', this.newGraph, 'fromNode: ', fromNode, 'toNode: ', toNode);
+  // var index = this.newGraph[fromNode].indexOf(toNode);
+  // console.log('this is index: ', index);
+  // if (this.newGraph[fromNode].includes(toNode)) {
+  //   this.newGraph[fromNode].splice(index, 1);
+  // }
 };
 
 // Pass in a callback which will be executed on each node of the graph.
