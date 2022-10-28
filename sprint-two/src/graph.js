@@ -2,14 +2,47 @@
 
 // Instantiate a new graph
 var Graph = function() {
+  this.newGraph = {};
+
 };
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
+  // console.log(node);
+  // console.log(this.newGraph(node));
+  //var test = new newGraph;
+
+  // var test = new Node(node);
+  this.newGraph[node] = node;
+  console.log('test', this.newGraph);
+
 };
+// var Node = function(value) {
+//   var node = {};
+
+//   node.value = value;
+//   node.next = null;
+
+//   return node;
+// };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
+
+//input - value
+//output - a boolean if the value passed
+//constraints - noone
+//edge cases - none
+
+//strategy - iterate through newGraph, check if value is equal to value, then return true;
+
+
 Graph.prototype.contains = function(node) {
+      for (const keys in this.newGraph) {
+
+        if (this.newGraph[keys] === node) {
+          return true;
+        }
+      }
 };
 
 // Removes a node from the graph.
