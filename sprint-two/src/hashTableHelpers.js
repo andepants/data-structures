@@ -14,10 +14,10 @@
 var LimitedArray = function(limit) {
   var storage = [];
 
-  var limitedArray = {};
+  var limitedArray = {}; // this._.storage
   limitedArray.get = function(index) {
     checkLimit(index);
-    return storage[index];
+    return storage[index]; // gives you index and tells you what's at the index
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
@@ -28,6 +28,10 @@ var LimitedArray = function(limit) {
       callback(storage[i], i, storage);
     }
   };
+
+  limitedArray.showStorage = function() {
+    console.log(storage);
+  }
 
   var checkLimit = function(index) {
     if (typeof index !== 'number') {
@@ -40,6 +44,7 @@ var LimitedArray = function(limit) {
 
   return limitedArray;
 };
+
 
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between the
@@ -56,4 +61,5 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ *
  */
