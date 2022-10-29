@@ -27,6 +27,15 @@ Graph.prototype.removeNode = function(node) {
       delete this.nodeLocation[keys];
     }
   }
+  for (var innerKeys in this.nodeLocation) {
+    if (this.nodeLocation[innerKeys].includes(node)) {
+      for (var i = 0; i < this.nodeLocation[innerKeys].length; i++){
+        if (this.nodeLocation[innerKeys][i] === node) {
+          this.nodeLocation[innerKeys].splice([i], 1);
+        }
+      }
+    }
+  }
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -108,6 +117,9 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
   if (this.nodeLocation[fromNode].includes(toNode)) {
     this.nodeLocation[fromNode].splice(index, 1);
   }
+  if (this.nodeLocation[toNode].includes(fromNode)) { //added this right here
+    this.nodeLocation[toNode].splice(index, 1);
+  }
 };
 
 //A concise description of the behavior you are expecting
@@ -123,6 +135,13 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addNodes -
+ * Contains -
+ * removeNodes -
+ * addEdge -
+ * hasEdge -
+ * removeEdge -
+ * forEachNode -
  */
 
 

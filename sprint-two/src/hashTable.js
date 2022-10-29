@@ -48,7 +48,7 @@ HashTable.prototype.retrieve = function(k) {
   var bucketAccess = this._storage.get(index);
   bucketAccess.forEach(function(currentTuple) {
     if (currentTuple[0] === k) {
-      console.log(currentTuple[1])
+      //console.log(currentTuple[1])
       result = currentTuple[1]; // **REVISIT: originally had 'return currentTuple[1]' which didn't work
     }
   })
@@ -84,6 +84,9 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * insert - constant, 0(1)
+ * retrieve - linear, 0(n)
+ * remove - linear, 0(n)
  */
 
 
